@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import OptionsPanel from '../OptionsPanel'
 import Board from '../Board'
-
+import { createTiles } from '../../misc/utils'
+ 
 import './App.css';
+import { NormalModuleReplacementPlugin } from 'webpack';
 
 class App extends Component{
 
@@ -15,6 +17,17 @@ class App extends Component{
        tiles: [],
        toBeCleared: null
      }
+  }
+
+  startGame = (numTiles) => {
+
+    this.setState((state) => ({
+      playing: true,
+      previousTileIndex: null,
+      toBeCleared: null,
+      tiles: createTiles(state.numTiles) 
+    }))
+
   }
 
   render() {
